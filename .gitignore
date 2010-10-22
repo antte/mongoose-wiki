@@ -1,0 +1,17 @@
+.settings
+.settings/
+settings.py
+*~
+*.orig
+*.pyc
+*.rej
+.installed.cfg
+__minitage__*
+bin/*
+develop-eggs
+downloads
+eggs
+log
+parts
+project/media/uploads
+tmp

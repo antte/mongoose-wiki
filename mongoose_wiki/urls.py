@@ -1,17 +1,21 @@
-from django.conf.urls.defaults import *
+# Main URLs file, delegates responsibility to individual applications.
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.conf.urls.defaults import *
+from django.contrib import admin
+admin.autodiscover()
+
+from mongoose_wiki import article
 
 urlpatterns = patterns('',
+    
+    (r'^article/', include('mongoose_wiki.article.urls')),
+    
     # Example:
-    # (r'^mongoose_wiki/', include('mongoose_wiki.foo.urls')),
+    # (r'^mongoose/', include('mongoose.foo.urls')),
 
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
-    # to INSTALLED_APPS to enable admin documentation:
+    # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    # (r'^admin/', include(admin.site.urls)),
+    (r'^admin/', include(admin.site.urls)),
+    
 )

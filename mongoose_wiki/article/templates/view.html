@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{article.title}} | Mongoose-wiki</title>
+	</head>
+	<body>
+		
+		<section id="main_content">
+			<article>
+				<header><h1>{{article.title}}</h1></header>
+				{% autoescape off %}
+					{{article.getBodyToHTML}}
+				{% endautoescape %}
+			</article>
+		</section>
+		
+	</body>
+</html>

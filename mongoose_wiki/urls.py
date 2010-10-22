@@ -5,10 +5,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 from mongoose_wiki import article
+from mongoose_wiki.article.views import index as articleindex
 
 urlpatterns = patterns('',
     
     (r'^article/', include('mongoose_wiki.article.urls')),
+    (r'^$', articleindex),
     
     # Example:
     # (r'^mongoose/', include('mongoose.foo.urls')),

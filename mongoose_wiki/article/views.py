@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from article.models import *
 
 def index(request):
-     return HttpResponseRedirect("/view")
+    return view(request, "start")
 
 def view(request, articleTitle):
     try:

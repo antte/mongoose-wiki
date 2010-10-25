@@ -6,6 +6,7 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from mongoose_wiki.article.models import Article, TranslationPattern
 
 class SimpleTest(TestCase):
     def test_basic_addition(self):
@@ -21,3 +22,11 @@ Another way to test that 1 + 1 is equal to 2.
 True
 """}
 
+class ArticleTest(TestCase):
+    
+    def test_escape_html_entities(self):
+        body = "<a href=\"\">&'</a>"
+        expected = "&lt;a href=&quot;&quot;&gt;&amp;&apos;&lt;/a&gt;"
+        article = Article()
+        actual = article.escapeHtmlEntities(body)
+        self.failUnlessEqual(actual, expected)

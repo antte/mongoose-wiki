@@ -1,5 +1,7 @@
 from article.models import *
 from django.contrib import admin
 
-admin.site.register(Article)
-admin.site.register(TranslationPattern)
+
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(TranslationPattern, TranslationPatternAdmin)
+

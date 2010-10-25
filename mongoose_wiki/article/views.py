@@ -36,13 +36,13 @@ def edit(request, articleTitle):
 		try:
 			article = Article.objects.get(title = articleTitle)
 			
-		except Article.DoesNotExist: #TODO 404?
-			t = loader.get_template("edit.html")
-			c = Context({"articleTitle" : articleTitle})
-		form = ArticleForm(instance=article)
-		t = loader.get_template("edit.html")
+		except Article.DoesNotExist:
+			article = Article(title=articleTitle)
+			form = ArticleForm(instance=article)
+		else:
+			form = ArticleForm(instance=article)
 		c = Context({"articleTitle" : articleTitle, "form" : form})
-	
+		t = loader.get_template("edit.html")
 	return HttpResponse(t.render(c))
 
 

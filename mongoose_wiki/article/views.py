@@ -6,12 +6,16 @@ def index(request):
     return view(request, "start")
 
 def view(request, articleTitle):
+    
     try:
         article = Article.objects.get(title = articleTitle)
-    except Article.DoesNotExist: #TODO 404?
-        raise Article.DoesNotExist
+    except Article.DoesNotExist:
+        t = loader.get_template("articleDoesNotExist.html")
+        c = Context({"articleTitle" : articleTitle})
+        return HttpResponse(t.render(c))
     
     t = loader.get_template("view.html")
+    
     c = Context({"article" : article})
     
     return HttpResponse(t.render(c))

@@ -6,11 +6,14 @@ admin.autodiscover()
 
 from mongoose_wiki import article
 from mongoose_wiki.article.views import index as articleindex
+from mongoose_wiki.article.views import searchResults as articlesearchresults
 
 urlpatterns = patterns('',
     
     (r'^article/', include('mongoose_wiki.article.urls')),
     (r'^$', articleindex),
+    
+    (r'^search', articlesearchresults),
     
     # Example:
     # (r'^mongoose/', include('mongoose.foo.urls')),

@@ -8,6 +8,29 @@ class Article(models.Model):
     title = models.CharField(max_length=128)
     body = models.TextField(max_length=2048)
     
+    # @return: a list of article titles
+    def search(self, queryString):
+        
+        queryString = self.escapeHtmlEntities(queryString)
+        
+        results = []
+        
+        for article in self.__class__.objects.all():
+            if re.search(queryString, article.title):
+                results.append(article.title)
+        
+        for article in self.__class__.objects.all():
+            alreadyInResults = False
+            
+            for result in results:
+                if (result == article.title):
+                    alreadyInResults = True
+            
+            if re.search(queryString, article.body) and not alreadyInResults:
+                results.append(article.title)
+        
+        return results
+    
     def getBodyToHTML(self):
         # We don't want to be destructive and change self.body
         body = self.body 
@@ -15,7 +38,6 @@ class Article(models.Model):
         # We escape before translating so that we don't destroy our new
         # HTML tags from the translation 
         body = self.escapeHtmlEntities(body)
-        
         body = TranslationPattern().replaceAll(body)
         
         return body

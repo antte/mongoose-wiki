@@ -57,12 +57,12 @@ def searchResults(request):
     
     results = article.search(query)
     
-    #Tests if results is an iterable object
+    #Tests if results is an iterable object 
     if not getattr(results, '__iter__', False):
         results = []
     
     t = loader.get_template("searchResults.html")
-    c = RequestContext(request, {"results" : results})
+    c = RequestContext(request, {"results" : results, "searchQuery" : query})
     
     return HttpResponse(t.render(c))
     

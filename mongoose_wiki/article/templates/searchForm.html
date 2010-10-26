@@ -1,5 +1,5 @@
 <div id="search">
-	<form method="post" action="/search">
+	<form method="post" action="/search">{% csrf_token %}
 		<label for="q" style="display:none">Search:</label>
 		<input type="text" name="q" />
 		<input type="submit" value="Search" />

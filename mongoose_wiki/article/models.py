@@ -51,6 +51,7 @@ class Article(models.Model):
             "<": "&lt;",
         }
         return "".join(html_escape_table.get(c,c) for c in text)
+	
     
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title']

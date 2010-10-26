@@ -1,4 +1,4 @@
-from django.template import loader, Context
+from django.template import loader, Context, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
 from article.models import *
 
@@ -17,7 +17,7 @@ def view(request, articleTitle):
     
     t = loader.get_template("view.html")
     
-    c = Context({"article" : article})
+    c = RequestContext(request, {"article" : article})
     
     return HttpResponse(t.render(c))
 
@@ -41,7 +41,7 @@ def edit(request, articleTitle):
 			form = ArticleForm(instance=article)
 		else:
 			form = ArticleForm(instance=article)
-		c = Context({"articleTitle" : articleTitle, "form" : form})
+		c = RequestContext(request, {"articleTitle" : articleTitle, "form" : form})
 		t = loader.get_template("edit.html")
 	return HttpResponse(t.render(c))
 
@@ -62,7 +62,7 @@ def searchResults(request):
         results = []
     
     t = loader.get_template("searchResults.html")
-    c = Context({"results" : results})
+    c = RequestContext(request, {"results" : results})
     
     return HttpResponse(t.render(c))
     

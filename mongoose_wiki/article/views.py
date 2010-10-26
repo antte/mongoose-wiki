@@ -57,7 +57,7 @@ def searchResults(request):
     
     results = article.search(query)
     
-    #Tests if results is an iterable object
+    #Tests if results is an iterable object 
     if not getattr(results, '__iter__', False):
         results = []
     

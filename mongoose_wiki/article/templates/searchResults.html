@@ -1,5 +1,10 @@
 <ul id="searchResults">
 	{% for result in results %}
-	<li><a href="/article/view/{{result}}/">{{result}}</a></li>
+		<li>
+			<h2><a href="/article/view/{{result.title}}/">{{result.title}}</a></h2>
+			{% autoescape off %}
+				<p>{{result.getBodyToHTML}}</p>
+			{% endautoescape %}
+		</li>
 	{% endfor %}
 </ul>

@@ -62,7 +62,7 @@ def searchResults(request):
         results = []
     
     t = loader.get_template("searchResults.html")
-    c = RequestContext(request, {"results" : results})
+    c = RequestContext(request, {"results" : results, "searchQuery" : query})
     
     return HttpResponse(t.render(c))
     

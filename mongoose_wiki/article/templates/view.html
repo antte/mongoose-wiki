@@ -9,7 +9,7 @@
 		
 		<section id="main_content">
 			<article>
-				<header><h1>{{article.title}}</h1><a href = "/article/edit/{{article.title}}/">Redigera artikel</a></header>
+				<header><h1>{{article.title}}</h1>{% include "articleMenu.html" %}</header>
 				{% autoescape off %}
 					{{article.getBodyToHTML}}
 				{% endautoescape %}

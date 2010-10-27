@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     (r'^view/$', index),
     (r'^view/(?P<articleTitle>.+)/$', view),
 	(r'^edit/(?P<articleTitle>.+)/$', edit),
+	(r'^history/(?P<articleTitle>.+)/$', history),
     
 )

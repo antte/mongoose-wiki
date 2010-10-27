@@ -1,12 +1,16 @@
 from django.db import models
 from django.contrib import admin
-import re
 from django.forms import ModelForm
-
+from us_er.models import User
+import re
 
 class Article(models.Model):
     title = models.CharField(max_length=128)
     body = models.TextField(max_length=2048)
+    editors = models.ManyToManyField(User, through='UserEditsArticle')
+    
+    def __unicode__(self):
+        return self.title
     
     # @return: a list of article titles
     def search(self, queryString):
@@ -68,8 +72,15 @@ class TranslationPattern(models.Model):
     
 class TranslationPatternAdmin(admin.ModelAdmin):
     list_display = ('needle', 'replace')
-	
+
 class ArticleForm(ModelForm):
-	class Meta:
-		model = Article
-	
+    class Meta:
+        exclude = ('editors',)
+        model = Article
+class UserEditsArticle(models.Model):
+    user = models.ForeignKey(User)
+    article = models.ForeignKey(Article)
+    timestamp = models.DateTimeField(auto_now=True)
+
+class UserEditsArticleAdmin(admin.ModelAdmin):
+    list_display = ['user', 'article', 'timestamp']

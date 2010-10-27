@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>{{articleTitle}} | Mongoose-wiki</title>
+	</head>
+	<body>
+		
+		{% include "searchForm.html" %}
+		
+		<section id="main_content">
+			
+			<header><h1>{{article.title}}</h1>{% include "articleMenu.html"%}</header>
+			
+			<table>
+				<thead>
+					<tr>
+						<td>Editor</td>
+						<td>Timestamp</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for edit in edits %}
+					<tr>
+						<td>{{edit.user.username}}</td>
+						<td>{{edit.timestamp}}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			
+			<article>
+				{% autoescape off %}
+				{{article.getBodyToHTML}}
+				{% endautoescape %}
+			</article>
+			
+		</section>
+		
+	</body>
+</html>

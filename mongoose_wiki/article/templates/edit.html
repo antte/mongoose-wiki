@@ -6,11 +6,20 @@
 {% block content %}
 		<section id="main_content">
 			<article>
-				<header><h1>Redigera: {{articleTitle}}</h1></header>
-				<form action="" method="post">
-					{{ form.as_p }}
-					<input type="submit" value="Redigera" />
-				</form>
+				{% block content %}
+				  {% if user.username %}
+					<header><h1>Redigera: {{articleTitle}}</h1></header>
+					<form action="" method="post">
+						{{ form.as_p }}
+						<input type="submit" value="Redigera" />
+					</form>
+				  {% else %}
+					<p>Welcome anonymous user!
+					  You need to <a href="/login/">login</a>
+					  before you can save and share wisdom.</p>
+				  {% endif %}
+				{% endblock %}
+				
 
 			</article>
 		</section>

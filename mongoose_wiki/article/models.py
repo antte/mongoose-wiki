@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib import admin
 from django.forms import ModelForm
-from us_er.models import User
 import re
 
 class Article(models.Model):
@@ -55,7 +54,6 @@ class Article(models.Model):
             "<": "&lt;",
         }
         return "".join(html_escape_table.get(c,c) for c in text)
-	
     
 class ArticleAdmin(admin.ModelAdmin):
     list_display = ['title']
@@ -63,13 +61,12 @@ class ArticleAdmin(admin.ModelAdmin):
 class TranslationPattern(models.Model):
     needle = models.CharField(max_length=256)
     replace = models.CharField(max_length=256)
-    
     def replaceAll(self, text):
         translationPatterns = self.__class__.objects.all()
         for translationPattern in translationPatterns:
             text = re.sub(translationPattern.needle, translationPattern.replace, text)
         return text
-    
+
 class TranslationPatternAdmin(admin.ModelAdmin):
     list_display = ('needle', 'replace')
 
@@ -77,6 +74,7 @@ class ArticleForm(ModelForm):
     class Meta:
         exclude = ('editors',)
         model = Article
+
 class UserEditsArticle(models.Model):
     user = models.ForeignKey(User)
     article = models.ForeignKey(Article)

@@ -16,7 +16,6 @@ def view(request, articleTitle):
         return HttpResponse(t.render(c))
     
     t = loader.get_template("view.html")
-    
     c = RequestContext(request, {"article" : article, "articleTitle" : article.title})
     
     return HttpResponse(t.render(c))

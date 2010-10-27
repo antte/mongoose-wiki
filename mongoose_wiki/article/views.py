@@ -1,5 +1,6 @@
 from django.template import loader, Context, RequestContext
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.models import User
 from article.models import *
 
 
@@ -30,7 +31,7 @@ def edit(request, articleTitle):
         else:
             form = ArticleForm(request.POST, instance=article)
         new_article = form.save()
-        editor = User.objects.get(username="antte") # TODO change to currently logged in user
+        editor = User.objects.get(username="antte")
         UserEditsArticle(article=new_article, user=editor).save()
         return HttpResponseRedirect("/article/view/"+articleTitle)
     else:

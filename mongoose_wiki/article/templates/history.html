@@ -1,42 +1,38 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>{{articleTitle}} | Mongoose-wiki</title>
-	</head>
-	<body>
+{% extends "base.html" %}
+
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+
+{% block content %}
 		
-		{% include "searchForm.html" %}
+	<section id="main_content">
+		<header><h1>{{article.title}}</h1>{% include "articleMenu.html"%}</header>
 		
-		<section id="main_content">
-			
-			<header><h1>{{article.title}}</h1>{% include "articleMenu.html"%}</header>
-			
-			<table>
-				<thead>
-					<tr>
-						<td>Editor</td>
-						<td>Timestamp</td>
-						<td>The state of the article at the time of change</td>
-					</tr>
-				</thead>
-				<tbody>
-					{% for edit in edits %}
-					<tr>
-						<td>{{edit.user.username}}</td>
-						<td>{{edit.timestamp}}</td>
-						<td>{{edit.getChange}}</td>
-					</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-			
-			<article>
-				{% autoescape off %}
-				{{article.getBodyToHTML}}
-				{% endautoescape %}
-			</article>
-			
-		</section>
+		<table>
+			<thead>
+				<tr>
+					<td>Editor</td>
+					<td>Timestamp</td>
+					<td>The state of the article at the time of change</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for edit in edits %}
+				<tr>
+					<td>{{edit.user.username}}</td>
+					<td>{{edit.timestamp}}</td>
+					<td>{{edit.getChange}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 		
-	</body>
-</html>
+		<article>
+			{% autoescape off %}
+			{{article.getBodyToHTML}}
+			{% endautoescape %}
+		</article>
+		
+	</section>
+	
+{% endblock %}

@@ -1,20 +1,22 @@
-﻿<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>{{articleTitle}} | Mongoose-wiki</title>
-	</head>
-	<body>
-		
+﻿{% extends "base.html" %}
+
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+
+{% block content %}
 		<section id="main_content">
 			<article>
+			  {% if user.username %}
 				<header><h1>Redigera: {{articleTitle}}</h1></header>
 				<form action="" method="post">
 					{{ form.as_p }}
 					<input type="submit" value="Redigera" />
 				</form>
-
+			  {% else %}
+				<p>Welcome anonymous user!
+				  You need to <a href="/login/">login</a>
+				  before you can save and share wisdom.</p>
+			  {% endif %}
 			</article>
 		</section>
-		
-	</body>
-</html>
+{% endblock %}

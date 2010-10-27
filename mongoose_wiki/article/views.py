@@ -30,10 +30,14 @@ def edit(request, articleTitle):
             form = ArticleForm(request.POST)
         else:
             form = ArticleForm(request.POST, instance=article)
+		
+        editor = User.objects.get(username=request.user.username)
+        
         new_article = form.save()
-        editor = User.objects.get(username="admin")
+        
         postedArticleBody = request.POST['body']
         UserEditsArticle(article=new_article, user=editor, change=postedArticleBody).save()
+        
         return HttpResponseRedirect("/article/view/"+articleTitle)
     else:
         try:

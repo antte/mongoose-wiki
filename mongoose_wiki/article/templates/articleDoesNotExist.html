@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>{{articleTitle}} does not exist | Mongoose-wiki</title>
-	</head>
-	<body>
-		The article <em>{{articleTitle}}</em> does not exist yet, do you want to <a href="/article/edit/{{articleTitle}}">create it</a>?
-	</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+
+{% block content %}
+	<h1>The article <em>{{articleTitle}}</em> does not exist</h1>
+	<p>Would you like to <a href="/article/edit/{{articleTitle}}">create it</a>?</p>
+{% endblock %}

@@ -5,3 +5,8 @@
 input {
   display: block;
 }
+
+body {
+background: url(pb.jpg) no-repeat;
+background-size: 100%;
+}

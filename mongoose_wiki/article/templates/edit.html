@@ -1,10 +1,9 @@
-﻿<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>{{articleTitle}} | Mongoose-wiki</title>
-	</head>
-	<body>
-		
+﻿{% extends "base.html" %}
+
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+
+{% block content %}
 		<section id="main_content">
 			<article>
 				<header><h1>Redigera: {{articleTitle}}</h1></header>
@@ -15,6 +14,4 @@
 
 			</article>
 		</section>
-		
-	</body>
-</html>
+{% endblock %}

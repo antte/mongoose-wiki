@@ -1,17 +1,122 @@
-#nav {
+article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
+
+body { 
+	margin: 0;
+	font-family: arial, sans-serif;
+	font-size: 14px;
+}
+
+#head {
+	overflow: hidden;
+	background: lightyellow;
+	margin: 0;
+	padding: 20px;
+}
+
+nav {
   float: right;
+	font-weight: bold;
+}
+
+nav li {
+	list-style: none;
+	float: left;
+	margin-top: 30px;
+	padding: 5px 10px;
+}
+
+#search {
+	float: right;
+	margin: 20px 40px 0 0;
+}
+
+#search input[name=q] {
+	font-size: 120%;
+	width: 240px;
+	float: left;
+	padding: 3px;
+}
+
+#search input[type=submit] {
+	font-size: 120%;
+	float: right;
+	margin-left: 10px;
 }
 
 input {
   display: block;
 }
 
-
 body {
-background: url(pb.jpg) no-repeat;
-background-size: 100%;
+	background: url(pb.jpg) no-repeat;
 }
 
 .doesNotExist{
 	color: red;
+}
+
+#main {
+	margin: 20px;
+}
+
+thead td {
+	font-weight: bold;
+}
+
+table td {
+	border: 1px solid gray;
+	padding: 2px 4px;
+}
+
+table tr {
+	background: #ccc;
+}
+
+table tr:nth-child(odd) {
+	background: #aaa;
+}
+
+table tr:hover {
+	background: #bbb;
+}
+
+#searchresults {
+	list-style: none;
+	max-height: 300px;
+	border-bottom: 2px solid gray;
+	margin: 10px 0;
+	font-size: 12px;
+}
+
+.searchresultheader {
+	font-size: 24px;
+}
+
+#newarticle label, #newarticle input, #newarticle textarea {
+	float: left;
+	clear: left;
+}
+
+#id_title {
+	font-size: 150%;
+	font-family: arial, sans-serif;
+	padding: 3px;
+}
+
+#newarticle textarea {
+	font-family: arial, sans-serif;
+	padding: 3px;
+	width: 90%;
+	height: 400px;
+}
+
+#newarticle input[type=submit] {
+	width: 40%;
+	height: 50px;
+	font-size: 20px;
+}
+
+#newarticle p {
+		margin-top: 30px;
+		overflow: hidden;
 }

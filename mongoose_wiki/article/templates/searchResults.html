@@ -6,19 +6,22 @@
 
 	{% block content %}
 	
-		<ul>
-			{% if not results %}
-				{% include "searchResultDoesNotExist.html" %}
-			{% endif %}
+		{% if not results %}
+			{% include "searchResultDoesNotExist.html" %}
+		{% else %}
+	
+		<ul id="searchresults">
 
 			{% for result in results %}
 			<li>
-				<h2><a href="/article/view/{{result.title}}/">{{result.title}}</a></h2>
+				<h2 class="searchresultheader"><a href="/article/view/{{result.title}}/">{{result.title}}</a></h2>
 				{% autoescape off %}
 					{{result.getBodyToHTML}}
 				{% endautoescape %}
 			</li>
 			{% endfor %}
 		</ul>
+		
+		{% endif %}
 		
 	{% endblock %}

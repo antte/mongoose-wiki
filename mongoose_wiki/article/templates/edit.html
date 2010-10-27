@@ -5,10 +5,9 @@
 
 {% block content %}
 		<section id="main_content">
-			<article>
 			  {% if user.username %}
-				<header><h1>Redigera: {{articleTitle}}</h1></header>
-				<form action="" method="post">
+				<header><h2>Redigera: {{articleTitle}}</h2></header>
+				<form id="newarticle" action="" method="post">
 					{{ form.as_p }}
 					<input type="submit" value="Redigera" />
 				</form>
@@ -17,6 +16,5 @@
 				  You need to <a href="/login/">login</a>
 				  before you can save and share wisdom.</p>
 			  {% endif %}
-			</article>
 		</section>
 {% endblock %}

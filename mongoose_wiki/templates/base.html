@@ -9,17 +9,27 @@
 </head>
 
 <body>
-  <div id="nav">
-    <a href="/">home</a> |
-    {% if user.is_authenticated %}
-      welcome {{ user.username }}
-      (<a href="/logout">logout</a>)
-    {% else %}
-      <a href="/login/">login</a> |
-      <a href="/register/">register</a>
-    {% endif %}
-  </div>
-  <h1>{% block head %}{% endblock %}</h1>
-  {% block content %}{% endblock %}
+	<header id="head">
+	  <nav>
+	    <ul>
+				<li><a href="/">Home</a></li>
+	    {% if user.is_authenticated %}
+	     	<li>Welcome {{ user.username }} (<a href="/logout">logout</a>)</li>
+	    {% else %}
+	      <li><a href="/login/">Login</a></li>
+	      <li><a href="/register/">Register</a></li>
+	    {% endif %}
+			</ul>
+	  </nav>
+	
+	<h1>{% block head %}{% endblock %}</h1>
+	
+	</header>
+	<section id="main">
+  
+  {% block content %}
+	{% endblock %}
+
+	</section>
 </body>
 </html>

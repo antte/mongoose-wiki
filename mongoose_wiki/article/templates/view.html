@@ -1,9 +1,9 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>{{article.title}} | Mongoose-wiki</title>
-	</head>
-	<body>
+{% extends "base.html" %}
+
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+
+	{% block content %}
 		
 		{% include "searchForm.html" %}
 		
@@ -15,6 +15,4 @@
 				{% endautoescape %}
 			</article>
 		</section>
-		
-	</body>
-</html>
+	{% endblock %}

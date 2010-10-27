@@ -21,7 +21,7 @@ site_media = os.path.join(
 urlpatterns = patterns('',
     
     (r'^article/', include('mongoose_wiki.article.urls')),
-    #(r'^$', articleindex),
+    (r'^$', articleindex),
     
     (r'^search', articlesearchresults),
     
@@ -34,7 +34,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     #added for register and login
-    (r'^$', main_page),
+    #(r'^$', main_page),
     (r'^user/(\w+)/$', user_page),
     (r'^login/$', 'django.contrib.auth.views.login'),
     (r'^logout/$', logout_page),

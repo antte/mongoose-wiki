@@ -6,7 +6,6 @@
 {% block content %}
 		
 	<section id="main_content">
-		
 		<header><h1>{{article.title}}</h1>{% include "articleMenu.html"%}</header>
 		
 		<table>
@@ -14,6 +13,7 @@
 				<tr>
 					<td>Editor</td>
 					<td>Timestamp</td>
+					<td>The state of the article at the time of change</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,6 +21,7 @@
 				<tr>
 					<td>{{edit.user.username}}</td>
 					<td>{{edit.timestamp}}</td>
+					<td>{{edit.getChange}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
@@ -33,5 +34,5 @@
 		</article>
 		
 	</section>
-		
+	
 {% endblock %}

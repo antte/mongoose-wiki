@@ -35,8 +35,9 @@ def edit(request, articleTitle):
         
         new_article = form.save()
         
+        postedArticleBody = request.POST['body']
+        UserEditsArticle(article=new_article, user=editor, change=postedArticleBody).save()
         
-        UserEditsArticle(article=new_article, user=editor).save()
         return HttpResponseRedirect("/article/view/"+articleTitle)
     else:
         try:

@@ -65,7 +65,23 @@ class TranslationPattern(models.Model):
     def replaceAll(self, text):
         translationPatterns = self.__class__.objects.all()
         for translationPattern in translationPatterns:
-            text = re.sub(translationPattern.needle, translationPattern.replace, text)
+            if translationPattern.needle == "\[\[(\w+)\]\]":
+                for match in re.finditer(translationPattern.needle, text):
+                    linkClass = ""
+                    
+                    try:
+                        Article.objects.get(title=match.group(1))
+                    except Article.DoesNotExist:
+                        linkClass = "doesNotExist"
+                    
+                    replaceText  = '<a href="/article/view/'+match.group(1)+'"'
+                    replaceText += 'class="'+linkClass+'">'+match.group(1)+'</a>'
+                    
+                    originalText = "\[\["+match.group(1)+"\]\]"
+                    
+                    text = re.sub(originalText, replaceText, text)
+            else:
+                text = re.sub(translationPattern.needle, translationPattern.replace, text)
         return text
 
 class TranslationPatternAdmin(admin.ModelAdmin):

@@ -1,6 +1,17 @@
-{% include "searchResultDoesNotExist.html" %}
+<h1>Du har sökt på: {{searchQuery}}</h1>
+
 <ul id="searchResults">
+	
+	{% if not results %}
+		{% include "searchResultDoesNotExist.html" %}
+	{% endif %}
+	
 	{% for result in results %}
-	<li><a href="/article/view/{{result}}/">{{result}}</a></li>
+	<li>
+		<h2><a href="/article/view/{{result.title}}/">{{result.title}}</a></h2>
+		{% autoescape off %}
+			{{result.getBodyToHTML}}
+		{% endautoescape %}
+	</li>
 	{% endfor %}
 </ul>

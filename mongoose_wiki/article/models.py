@@ -21,7 +21,7 @@ class Article(models.Model):
         
         for article in self.__class__.objects.all():
             if re.search(queryString, article.title):
-                results.append(article.title)
+                results.append(article)
         
         for article in self.__class__.objects.all():
             alreadyInResults = False
@@ -31,7 +31,7 @@ class Article(models.Model):
                     alreadyInResults = True
             
             if re.search(queryString, article.body) and not alreadyInResults:
-                results.append(article.title)
+                results.append(article)
         
         return results
     

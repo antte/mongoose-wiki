@@ -96,6 +96,22 @@ class UserEditsArticle(models.Model):
     user = models.ForeignKey(User)
     article = models.ForeignKey(Article)
     timestamp = models.DateTimeField(auto_now=True)
+    change = models.TextField(max_length=2048)
+    
+    def getChange(self):
+        return self.escapeHtmlEntities(self.change)
+    
+    # copy pasted (i know) from article model
+    #@see: Article.escapeHtmlEntities()
+    def escapeHtmlEntities(self, text):
+        html_escape_table = {
+            "&": "&amp;",
+            '"': "&quot;",
+            "'": "&apos;",
+            ">": "&gt;",
+            "<": "&lt;",
+        }
+        return "".join(html_escape_table.get(c,c) for c in text)
 
 class UserEditsArticleAdmin(admin.ModelAdmin):
     list_display = ['user', 'article', 'timestamp']

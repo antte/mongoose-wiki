@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Welcome to Projectwiki{% endblock %}
+{% block head %}Welcome to Projectwiki{% endblock %}
+{% block content %}
+  {% if user.username %}
+    <p>Welcome {{ user.username }}!
+      Here you have some utter nonsense.</p>
+  {% else %}
+    <p>Welcome anonymous user!
+      You need to <a href="/login/">login</a>
+      before you can save and share wisdom.</p>
+  {% endif %}
+{% endblock %}

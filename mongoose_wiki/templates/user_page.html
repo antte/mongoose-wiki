@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ username }}{% endblock %}
+{% block head %}Uncoherent words from {{ username }}{% endblock %}
+{% block content %}
+  {% if words %}
+    <ul>
+      {% for w in words %}
+        <li><a href="{{ w.link.url }}">
+          {{ w.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No wisdom found.</p>
+  {% endif %}
+{% endblock %}
